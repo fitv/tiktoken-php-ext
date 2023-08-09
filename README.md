@@ -11,7 +11,7 @@ cargo build --release
 
 Move the generated library to your php extension directory.
 ```
-mv ./target/release/libtiktoken.so $(php-config --extension-dir) tiktoken.so
+cp ./target/release/libtiktoken.so $(php-config --extension-dir)/tiktoken.so
 ```
 
 Then add `extension=tiktoken.so` to your php.ini file.
