@@ -19,6 +19,11 @@ Then add `extension=tiktoken.so` to your php.ini file.
 echo "extension=tiktoken.so" >> $(php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||")
 ```
 
+Check if the extension is loaded.
+```bash
+php -m | grep tiktoken
+```
+
 ## Usage
 
 ```php
