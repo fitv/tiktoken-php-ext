@@ -2,6 +2,7 @@
 name = "tiktoken-php-ext"
 version = "0.1.0"
 edition = "2021"
+keywords = ["tiktoken", "php", "extension"]
 
 [lib]
 crate-type = ["cdylib"]
@@ -12,6 +13,3 @@ tiktoken-rs = "0.5"
 
 [profile.release]
 strip = "debuginfo"
-
-[target.x86_64-pc-windows-msvc]
-linker = "rust-lld"
