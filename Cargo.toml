@@ -1,0 +1,17 @@
+[package]
+name = "tiktoken-php-ext"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+ext-php-rs = "0.10"
+tiktoken-rs = "0.5"
+
+[profile.release]
+strip = "debuginfo"
+
+[target.x86_64-pc-windows-msvc]
+linker = "rust-lld"
