@@ -23,6 +23,7 @@ echo "extension=tiktoken.so" >> $(php --ini | grep "Loaded Configuration" | sed 
 
 ```php
 <?php
+
 use function TikToken\num_tokens;
 use function TikToken\num_tokens_from_messages;
 
