@@ -29,8 +29,11 @@ php -m | grep tiktoken
 ```php
 <?php
 
+use function TikToken\model_max_tokens;
 use function TikToken\num_tokens;
 use function TikToken\num_tokens_from_messages;
+
+var_dump(model_max_tokens('gpt-4'));
 
 var_dump(num_tokens('gpt-4', 'Hello!'));
 
@@ -55,14 +58,19 @@ Stub file for IDEs.
 <?php
 
 namespace TikToken {
-   /**
-    * Get the number of tokens present in the text.
-    */
-   function num_tokens(string $model, string $text): int {}
+    /**
+     * Get the maximum token number of a specified model.
+     */
+    function model_max_tokens(string $model): int {}
 
-   /**
-    * Get the number of tokens in the message.
-    */
-   function num_tokens_from_messages(string $model, array $messages): int {}
+    /**
+     * Get the number of tokens present in the text.
+     */
+    function num_tokens(string $model, string $text): int {}
+
+    /**
+     * Get the number of tokens in the message.
+     */
+    function num_tokens_from_messages(string $model, array $messages): int {}
 }
 ```
