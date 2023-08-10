@@ -1,5 +1,5 @@
 [package]
-name = "tiktoken-php-ext"
+name = "tiktoken"
 version = "0.1.0"
 edition = "2021"
 keywords = ["tiktoken", "php", "extension"]
