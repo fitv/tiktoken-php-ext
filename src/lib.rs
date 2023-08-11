@@ -29,7 +29,7 @@ pub fn encode_for_model(model: String, text: String) -> PhpResult<Vec<usize>> {
     Ok(get_bpe_from_model(model.as_str())?.encode_with_special_tokens(text.as_str()))
 }
 
-// Decode the tokens into a text for a specified model.
+/// Decode the tokens into a text for a specified model.
 #[php_function(name = "TikToken\\decode_for_model")]
 pub fn decode_for_model(model: String, tokens: Vec<usize>) -> PhpResult<String> {
     Ok(get_bpe_from_model(model.as_str())?.decode(tokens)?)
