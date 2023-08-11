@@ -1,6 +1,12 @@
 # tiktoken-php-ext
 
-A PHP extension for [tiktoken](https://github.com/openai/tiktoken)
+A [tiktoken](https://github.com/openai/tiktoken) extension for PHP.
+
+## Requirements
+
+- Rust >= 1.57
+- PHP >= 8.0
+- Clang >= 5.0
 
 ## Installation
 
