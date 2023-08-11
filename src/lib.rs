@@ -12,7 +12,7 @@ use tiktoken_rs::{get_bpe_from_model, get_bpe_from_tokenizer, ChatCompletionRequ
 pub fn encode(tokenizer: String, text: String) -> PhpResult<Vec<usize>> {
     let tokenizer =
         get_tokenizer(&tokenizer).ok_or(format!("Tokenizer {} not found", tokenizer))?;
-    Ok(get_bpe_from_tokenizer(tokenizer)?.encode_with_special_tokens(text.as_str()))
+    Ok(get_bpe_from_tokenizer(tokenizer)?.encode_with_special_tokens(&text))
 }
 
 /// Decode the tokens into a text.
@@ -26,26 +26,26 @@ pub fn decode(tokenizer: String, tokens: Vec<usize>) -> PhpResult<String> {
 /// Encode the text into a list of tokens for a specified model.
 #[php_function(name = "TikToken\\encode_for_model")]
 pub fn encode_for_model(model: String, text: String) -> PhpResult<Vec<usize>> {
-    Ok(get_bpe_from_model(model.as_str())?.encode_with_special_tokens(text.as_str()))
+    Ok(get_bpe_from_model(&model)?.encode_with_special_tokens(&text))
 }
 
 /// Decode the tokens into a text for a specified model.
 #[php_function(name = "TikToken\\decode_for_model")]
 pub fn decode_for_model(model: String, tokens: Vec<usize>) -> PhpResult<String> {
-    Ok(get_bpe_from_model(model.as_str())?.decode(tokens)?)
+    Ok(get_bpe_from_model(&model)?.decode(tokens)?)
 }
 
 /// Get the maximum token number of a specified model.
 #[php_function(name = "TikToken\\model_max_tokens")]
 pub fn model_max_tokens(model: String) -> usize {
-    get_context_size(model.as_str())
+    get_context_size(&model)
 }
 
 /// Get the number of tokens in the text.
 #[php_function(name = "TikToken\\num_tokens")]
 pub fn num_tokens(model: String, text: String) -> PhpResult<usize> {
-    Ok(get_bpe_from_model(model.as_str())?
-        .encode_with_special_tokens(text.as_str())
+    Ok(get_bpe_from_model(&model)?
+        .encode_with_special_tokens(&text)
         .len())
 }
 
@@ -62,10 +62,7 @@ pub fn num_tokens_from_messages(model: String, messages: Vec<Message>) -> PhpRes
             function_call: message.function_call(),
         })
         .collect();
-    Ok(tiktoken_rs::num_tokens_from_messages(
-        model.as_str(),
-        &messages,
-    )?)
+    Ok(tiktoken_rs::num_tokens_from_messages(&model, &messages)?)
 }
 
 #[php_module]
