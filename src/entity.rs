@@ -44,8 +44,8 @@ impl<'a> FromZval<'a> for MessageValue {
                 zval.array()
                     .unwrap()
                     .iter()
-                    .filter(|(_, key, val)| key.is_some() && val.is_string())
-                    .map(|(_, key, val)| (key.unwrap(), val.string().unwrap()))
+                    .filter(|(key, val)| !key.is_long() && val.is_string())
+                    .map(|(key, val)| (key.to_string(), val.string().unwrap()))
                     .collect(),
             ));
         }
